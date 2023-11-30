@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>A calculator</title>
+</head>
+<body>
+<div class="container">
+		<div class="screen">
+			<div class="output" id="output"></div>
+		</div>
+		<div class="buttons">
+			<button class="button" onclick="clearOutput()">C</button>
+			<button class="button" onclick="backspace()">&larr;</button>
+			<button class="button" onclick="insert('%')">%</button>
+			<button class="button operator" onclick="insert('/')">&divide;</button>
+			<button class="button" onclick="insert('7')">7</button>
+			<button class="button" onclick="insert('8')">8</button>
+			<button class="button" onclick="insert('9')">9</button>
+			<button class="button operator" onclick="insert('*')">&times;</button>
+			<button class="button" onclick="insert('4')">4</button>
+			<button class="button" onclick="insert('5')">5</button>
+			<button class="button" onclick="insert('6')">6</button>
+			<button class="button operator" onclick="insert('-')">&minus;</button>
+			<button class="button" onclick="insert('1')">1</button>
+			<button class="button" onclick="insert('2')">2</button>
+			<button class="button" onclick="insert('3')">3</button>
+			<button class="button operator" onclick="insert('+')">+</button>
+			<button class="button" onclick="insert('0')">0</button>
+			<button class="button" onclick="insert('.')">.</button>
+			<button class="button" onclick="calculate()">=</button>
+		</div>
+	</div>
+
+
+  
+</body>
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #f8f8f8;
+}
+
+.screen {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	width: 80%;
+	height: 20%;
+	background-color: #333;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.output {
+	color: #fff;
+	font-size: 2em;
+}
+
+.buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	width: 80%;
+	height: 70%;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	border: none;
+	border-radius: 10px;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.operator {
+	background-color: #ffa500;
+	color: #fff;
+}
+
+.button:hover {
+	background-color: #f8f8f8;
+}
+
+.button:active {
+	background-color: #dcdcdc;
+}
+
+@media screen and (max-width: 480px) {
+	.buttons {
+		grid-template-columns: repeat(3, 1fr);
+	}
+    }
+</style>
+
+    <script>
+let output = document.getElementById('output');
+
+function insert(value) {
+	output.innerHTML += value;
+}
+
+function clearOutput() {
+	output.innerHTML = '';
+}
+
+function backspace() {
+	let currentValue = output.innerHTML;
+	output.innerHTML = currentValue.substr(0, currentValue.length - 1);
+}
+
+function calculate() {
+	let expression = output.innerHTML;
+	let result = eval(expression);
+	output.innerHTML = result;
+}
+
+</script>    
+</html>
